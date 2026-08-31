@@ -227,11 +227,19 @@
 </footer>
 
 <script>
+  // Swap FORM_ENDPOINT for the FormSubmit hash address once the form is activated,
+  // so the plain address is not exposed to spam harvesters in the page source.
+  const FORM_ENDPOINT = 'info@digitaldynamics.se';
+  const CONTACT_EMAIL = 'info@digitaldynamics.se';
+
   const form = document.getElementById('waitlist-form');
   const msg = document.getElementById('form-msg');
+  const btn = form.querySelector('button[type="submit"]');
+
+  form.action = 'https://formsubmit.co/' + FORM_ENDPOINT;
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const btn = form.querySelector('button[type="submit"]');
     const email = form.email.value.trim();
     if (!email) return;
     btn.disabled = true;
@@ -239,7 +247,7 @@
     msg.className = 'form-msg';
     msg.textContent = '';
     try {
-      const res = await fetch('https://formsubmit.co/ajax/info@digitaldynamics.se', {
+      const res = await fetch('https://formsubmit.co/ajax/' + FORM_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
@@ -249,16 +257,23 @@
           _honey: form._honey.value
         })
       });
-      if (!res.ok) throw new Error('http ' + res.status);
+      const data = await res.json().catch(() => null);
+      // FormSubmit answers HTTP 200 even when it rejects the submission,
+      // so the JSON success flag is the only reliable signal.
+      if (!res.ok || !data || String(data.success) !== 'true') {
+        throw new Error(data && data.message ? data.message : 'http ' + res.status);
+      }
       msg.className = 'form-msg ok';
       msg.textContent = 'Tack! Du står på listan. Jag hör av mig när det är dags.';
       form.reset();
       btn.textContent = 'Klart';
     } catch (err) {
-      // Fall back to a normal form post; form.submit() bypasses this listener
       msg.className = 'form-msg err';
-      msg.textContent = 'Något gick fel. Försöker igen på klassiskt vis...';
-      form.submit();
+      msg.innerHTML = 'Anmälan gick inte fram just nu. Mejla mig på ' +
+        '<a href="mailto:' + CONTACT_EMAIL + '?subject=V%C3%A4ntelista%20MarginLens">' +
+        CONTACT_EMAIL + '</a> så lägger jag till dig för hand.';
+      btn.disabled = false;
+      btn.textContent = 'Anmäl mig';
     }
   });
 </script>
