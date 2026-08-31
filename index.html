@@ -34,7 +34,7 @@
   .wrap { max-width: 1020px; margin: 0 auto; padding: 0 20px; }
 
   header { padding: 22px 0; }
-  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.15rem; letter-spacing: -0.01em; }
+  .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.55rem; letter-spacing: -0.01em; }
   .brand svg { flex: none; }
 
   .hero { padding: 44px 0 60px; }
@@ -145,7 +145,7 @@
 <header>
   <div class="wrap">
     <div class="brand">
-      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#122A3F"/><path d="M8 22V10l5 7 5-7v12" fill="none" stroke="#F5A623" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg width="42" height="42" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#122A3F"/><path d="M8 22V10l5 7 5-7v12" fill="none" stroke="#F5A623" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       MarginLens
     </div>
   </div>
@@ -204,7 +204,7 @@
   <div class="wrap">
     <h2>Var med från början</h2>
     <p>Jag bygger MarginLens under hösten 2026 och testar med riktiga målerifirmor. Lämna din mejladress så hör jag av mig när det är dags.</p>
-    <form id="waitlist-form" class="form-row" action="https://formsubmit.co/manou.sarr@gmail.com" method="POST">
+    <form id="waitlist-form" class="form-row" action="https://formsubmit.co/info@digitaldynamics.se" method="POST">
       <input type="email" name="email" placeholder="din@mejladress.se" required autocomplete="email" aria-label="Din mejladress">
       <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <input type="hidden" name="_subject" value="Ny anmälan till MarginLens väntelista">
@@ -221,7 +221,7 @@
   <div class="wrap">
     <div class="cols">
       <p><strong>MarginLens</strong> byggs av DigitalDynamics, Stockholm.</p>
-      <p>Kontakt: <a href="mailto:manou.sarr@gmail.com">manou.sarr@gmail.com</a></p>
+      <p>Kontakt: <a href="mailto:info@digitaldynamics.se">info@digitaldynamics.se</a></p>
     </div>
   </div>
 </footer>
@@ -239,7 +239,7 @@
     msg.className = 'form-msg';
     msg.textContent = '';
     try {
-      const res = await fetch('https://formsubmit.co/ajax/manou.sarr@gmail.com', {
+      const res = await fetch('https://formsubmit.co/ajax/info@digitaldynamics.se', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
