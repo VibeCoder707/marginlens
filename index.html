@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MarginLens. Professionella offerter på minuter.</title>
+<meta name="description" content="MarginLens hjälper små hantverksföretag att göra professionella offerter på minuter. Fota jobbet, beskriv med rösten, få ett offertutkast med marginalvarning.">
+<meta property="og:title" content="MarginLens. Professionella offerter på minuter.">
+<meta property="og:description" content="Fota jobbet, beskriv med rösten, få ett offertutkast med marginalvarning. Byggt för svenska hantverkare, med ROT inräknat.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="sv_SE">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23122A3F'/%3E%3Cpath d='M8 22V10l5 7 5-7v12' fill='none' stroke='%23F5A623' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --ink: #122a3f;
+    --ink-soft: #3d5468;
+    --paper: #ffffff;
+    --paper-warm: #f6f4ef;
+    --accent: #f5a623;
+    --accent-deep: #d98b0a;
+    --warn: #c73a3a;
+    --line: #e3ded4;
+    --radius: 14px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1020px; margin: 0 auto; padding: 0 20px; }
+
+  header { padding: 22px 0; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.15rem; letter-spacing: -0.01em; }
+  .brand svg { flex: none; }
+
+  .hero { padding: 44px 0 60px; }
+  .hero h1 {
+    font-size: clamp(1.9rem, 5.5vw, 3.1rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    max-width: 17ch;
+  }
+  .hero h1 .accent { color: var(--accent-deep); }
+  .hero p.lead {
+    margin-top: 18px;
+    font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+    color: var(--ink-soft);
+    max-width: 54ch;
+  }
+  .hero .cta-row { margin-top: 28px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .btn {
+    display: inline-block;
+    background: var(--ink);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 14px 26px;
+    border-radius: 999px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .btn:hover { background: #1d3d59; }
+  .btn.btn-accent { background: var(--accent); color: var(--ink); }
+  .btn.btn-accent:hover { background: var(--accent-deep); color: #fff; }
+  .hero .note { font-size: 0.9rem; color: var(--ink-soft); }
+
+  .steps { background: var(--paper-warm); padding: 56px 0 64px; }
+  .steps h2, .who h2, .signup h2 { font-size: clamp(1.5rem, 3.5vw, 2rem); letter-spacing: -0.015em; }
+  .steps .sub { color: var(--ink-soft); margin-top: 10px; max-width: 58ch; }
+  .step-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 34px; }
+  .step {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 24px 22px;
+  }
+  .step .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--ink); color: var(--accent);
+    font-weight: 700; font-size: 1rem;
+  }
+  .step h3 { margin-top: 14px; font-size: 1.12rem; }
+  .step p { margin-top: 8px; color: var(--ink-soft); font-size: 0.97rem; }
+  .step .flag {
+    display: inline-block; margin-top: 12px;
+    background: #fdecec; color: var(--warn);
+    font-size: 0.82rem; font-weight: 600;
+    padding: 4px 10px; border-radius: 6px;
+  }
+
+  .who { padding: 56px 0; }
+  .who p { margin-top: 14px; color: var(--ink-soft); max-width: 62ch; }
+  .who ul { margin-top: 16px; padding-left: 0; list-style: none; max-width: 62ch; }
+  .who li { padding: 10px 0 10px 32px; position: relative; color: var(--ink); }
+  .who li::before {
+    content: ""; position: absolute; left: 0; top: 16px;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--accent);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
+
+  .signup { background: var(--ink); color: #fff; padding: 56px 0 64px; }
+  .signup h2 { color: #fff; }
+  .signup p { margin-top: 12px; color: #c3d2df; max-width: 56ch; }
+  .form-row { margin-top: 26px; display: flex; gap: 10px; flex-wrap: wrap; max-width: 520px; }
+  .form-row input[type="email"] {
+    flex: 1 1 260px;
+    padding: 14px 18px;
+    border-radius: 999px;
+    border: 1px solid #3d5468;
+    background: #fff;
+    color: var(--ink);
+    font-size: 1rem;
+    outline: none;
+  }
+  .form-row input[type="email"]:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.35); }
+  .form-msg { margin-top: 14px; font-size: 0.95rem; min-height: 1.4em; }
+  .form-msg.ok { color: #8fd694; }
+  .form-msg.err { color: #f2a0a0; }
+  .signup .privacy { margin-top: 18px; font-size: 0.85rem; color: #8fa5b8; max-width: 56ch; }
+  .hp { position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; overflow: hidden; }
+
+  footer { padding: 34px 0 44px; border-top: 1px solid var(--line); }
+  footer .cols { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: center; }
+  footer p { color: var(--ink-soft); font-size: 0.92rem; }
+  footer a { color: var(--ink); font-weight: 600; text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 720px) {
+    .step-grid { grid-template-columns: 1fr; }
+    .hero { padding: 28px 0 48px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#122A3F"/><path d="M8 22V10l5 7 5-7v12" fill="none" stroke="#F5A623" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      MarginLens
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Professionella offerter på minuter. <span class="accent">Fånga olönsamma jobb innan du skickar dem.</span></h1>
+    <p class="lead">Du kan ditt hantverk. MarginLens sköter räknandet. Fota jobbet, beskriv det med rösten och få ett offertutkast med materiallista, arbetstimmar, tre prisalternativ och en tydlig varning om marginalen är för låg.</p>
+    <div class="cta-row">
+      <a class="btn btn-accent" href="#vantelista">Ställ dig i väntelistan</a>
+      <span class="note">Lanseras i höst. Först ut: måleri.</span>
+    </div>
+  </div>
+</section>
+
+<section class="steps">
+  <div class="wrap">
+    <h2>Så fungerar det</h2>
+    <p class="sub">Tre steg från jobbet till en färdig offert. Du redigerar allt och fattar alltid det sista beslutet.</p>
+    <div class="step-grid">
+      <div class="step">
+        <span class="num">1</span>
+        <h3>Fota jobbet</h3>
+        <p>Ta några bilder med mobilen direkt på plats. Rum, ytor och skick räcker gott.</p>
+      </div>
+      <div class="step">
+        <span class="num">2</span>
+        <h3>Beskriv med rösten</h3>
+        <p>Berätta på svenska vad kunden vill ha och vad du redan vet om jobbet. Eller skriv om du hellre gör det.</p>
+      </div>
+      <div class="step">
+        <span class="num">3</span>
+        <h3>Få offertutkast med marginalvarning</h3>
+        <p>Omfattning, materiallista, arbetstimmar och tre prisalternativ. ROT-avdraget räknas ut automatiskt.</p>
+        <span class="flag">Varnar när marginalen är för låg</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="who">
+  <div class="wrap">
+    <h2>Byggt för svenska hantverkare</h2>
+    <p>Internationella verktyg finns, men inget av dem är byggt för svenska offerter, ROT eller svenska materialpriser. MarginLens börjar med måleri och byggs ut till fler yrkesgrupper.</p>
+    <ul>
+      <li>Offertutkast på svenska, redo att skicka som PDF</li>
+      <li>ROT-avdraget uträknat, med kundens pris efter avdrag</li>
+      <li>Marginalvarning som visar var din smärtgräns går</li>
+      <li>Allt är redigerbart. Utkastet är ett förslag, offerten är din.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="signup" id="vantelista">
+  <div class="wrap">
+    <h2>Var med från början</h2>
+    <p>Jag bygger MarginLens under hösten 2026 och testar med riktiga målerifirmor. Lämna din mejladress så hör jag av mig när det är dags.</p>
+    <form id="waitlist-form" class="form-row" action="https://formsubmit.co/manou.sarr@gmail.com" method="POST">
+      <input type="email" name="email" placeholder="din@mejladress.se" required autocomplete="email" aria-label="Din mejladress">
+      <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <input type="hidden" name="_subject" value="Ny anmälan till MarginLens väntelista">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <button type="submit" class="btn btn-accent">Anmäl mig</button>
+    </form>
+    <p class="form-msg" id="form-msg" role="status" aria-live="polite"></p>
+    <p class="privacy">Din mejladress används bara till väntelistan för MarginLens. Inget annat, inga utskickslistor. Vill du bli borttagen mejlar du mig så raderar jag adressen.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <p><strong>MarginLens</strong> byggs av DigitalDynamics, Stockholm.</p>
+      <p>Kontakt: <a href="mailto:manou.sarr@gmail.com">manou.sarr@gmail.com</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const form = document.getElementById('waitlist-form');
+  const msg = document.getElementById('form-msg');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    const email = form.email.value.trim();
+    if (!email) return;
+    btn.disabled = true;
+    btn.textContent = 'Skickar...';
+    msg.className = 'form-msg';
+    msg.textContent = '';
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/manou.sarr@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          _subject: 'Ny anmälan till MarginLens väntelista',
+          _template: 'table',
+          _honey: form._honey.value
+        })
+      });
+      if (!res.ok) throw new Error('http ' + res.status);
+      msg.className = 'form-msg ok';
+      msg.textContent = 'Tack! Du står på listan. Jag hör av mig när det är dags.';
+      form.reset();
+      btn.textContent = 'Klart';
+    } catch (err) {
+      // Fall back to a normal form post; form.submit() bypasses this listener
+      msg.className = 'form-msg err';
+      msg.textContent = 'Något gick fel. Försöker igen på klassiskt vis...';
+      form.submit();
+    }
+  });
+</script>
+
+</body>
+</html>
